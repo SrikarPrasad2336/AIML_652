@@ -62,13 +62,6 @@ mean_sales = merged_df.groupby('CustomerName')['Amount'].mean()
 print("\nMean sales per customer:")
 print(mean_sales)
 
-# Create a DataFrame for Patient Information
-# 1) Patient Name
-# 2) Age
-# 3) Date of appointment
-# 4) Patient ID
-# Create a DataFrame named drag_quantity that includes column names as drag name, quantity, patient_id
-# Filter DataFrame to get Patient name and age < 6
 
 # Merge the dataframes with inner join of Patient information and drag quantity DataFrame
 print()
@@ -89,3 +82,35 @@ print()
 merged_df=pd.merge(sales_df, customers_df, on='CustomerID', how='right')
 print("\nMerged DataFrame:")
 print(merged_df)
+
+
+# Create a DataFrame for Patient Information
+# 1) Patient Name
+# 2) Age
+# 3) Date of appointment
+# 4) Patient ID
+# Create a DataFrame named drag_quantity that includes column names as drag name, quantity, patient_id
+# Filter DataFrame to get Patient name and age < 6
+
+import pandas as pd
+
+patient_data = {
+    'Patient Name': ['John Doe', 'Jane Smith', 'Alice Johnson', 'Bob Brown'],
+    'Age': [5, 3, 7, 2],
+    'Date of Appointment': ['2025-01-22', '2025-01-23', '2025-01-24', '2025-01-25'],
+    'Patient ID': [101, 102, 103, 104]
+}
+
+patient_df = pd.DataFrame(patient_data)
+
+drag_quantity_data = {
+    'Drag Name': ['Drag A', 'Drag B', 'Drag C', 'Drag D'],
+    'Quantity': [1, 3, 2, 4],
+    'Patient ID': [101, 102, 103, 104]
+}
+
+drag_quantity_df = pd.DataFrame(drag_quantity_data)
+
+filtered_patient_df = patient_df[patient_df['Age'] < 6][['Patient Name', 'Age']]
+
+print(filtered_patient_df)
